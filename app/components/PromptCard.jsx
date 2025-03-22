@@ -1,38 +1,3 @@
-// "use client";
-
-// import { useState } from "react";
-// import Image from "next/image";
-// import { useSession } from "next-auth/react";
-// import { usePathname } from "next/navigation";
-
-// const PromptCard = ({ post, handleTagClick }) => {
-//   return (
-//     <div className="flex flex-col bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 rounded-xl shadow-lg hover:scale-105 transform transition-all duration-300 ease-in-out w-full max-w-md cursor-pointer">
-//       {/* Prompt Content */}
-//       <div className="flex flex-col gap-4">
-//         <p className="text-lg font-semibold text-white">{post.prompt}</p>
-
-//         {/* Tag Section */}
-//         <div className="flex justify-start items-center text-sm text-white">
-//           <p
-//             className="cursor-pointer text-pink-200 hover:text-yellow-400 transition-colors duration-300"
-//             onClick={() => handleTagClick && handleTagClick(post.tag)}
-//           >
-//             #{post.tag}
-//           </p>
-//         </div>
-//       </div>
-
-//       {/* Hover effect: Optional image or other content */}
-      
-//     </div>
-//   );
-// };
-
-// export default PromptCard;
-
-
-
 "use client";
 
 import { useState } from "react";
@@ -42,22 +7,21 @@ import { usePathname } from "next/navigation";
 
 const PromptCard = ({ post, handleTagClick }) => {
   return (
-    <div className="flex flex-col bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 rounded-xl shadow-lg hover:scale-105 transform transition-all duration-300 ease-in-out w-full max-w-md cursor-pointer hover:shadow-2xl">
-      {/* Prompt Content */}
-      <div className="flex flex-col gap-4">
-        <p className="text-lg font-semibold text-white">{post.prompt}</p>
 
-        {/* Tag Section */}
-        <div className="flex justify-start items-center text-sm text-white">
+    <div className="flex flex-col py-10 px-10 bg-white p-5 rounded-lg shadow-md border border-gray-100 transition-transform duration-300 hover:shadow-lg hover:scale-[1.02] w-full cursor-pointer">
+
+      <div className="flex flex-col gap-4">
+        <p className="text-lg font-medium text-gray-800">{post.prompt}</p>
+        
+        <div className="flex justify-start items-center text-sm text-gray-600">
           <p
-            className="cursor-pointer text-pink-200 hover:text-yellow-400 transition-colors duration-300 font-medium"
+            className="cursor-pointer text-blue-600 hover:text-blue-800 font-bold transition-colors duration-300 "
             onClick={() => handleTagClick && handleTagClick(post.tag)}
           >
             #{post.tag}
           </p>
         </div>
       </div>
-
     </div>
   );
 };

@@ -1,5 +1,4 @@
 
-
 import Prompt from "models/prompts";
 import { ConnectDB } from "@util/database";
 

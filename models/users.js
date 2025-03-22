@@ -1,6 +1,3 @@
-
-
-
 import { Schema, model, models } from 'mongoose';
 
 const UserSchema = new Schema({
@@ -18,7 +15,6 @@ const UserSchema = new Schema({
     }
 });
 
-// Prevent model overwriting
 const User = models.User || model("User", UserSchema);
 
 export default User;

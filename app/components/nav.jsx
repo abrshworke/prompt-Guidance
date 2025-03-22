@@ -27,19 +27,21 @@ const Nav = () => {
         <p className="text-xl font-bold text-gray-800 hover:text-blue-600 transition duration-300">AI Prompt</p>
       </Link>
 
-      {/* Desktop Navigation */}
       <div className="hidden md:flex items-center gap-6">
         {session?.user ? (
+
           <>
             <Link href="/create-prompt" className="px-5 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300">
               Create Post
             </Link>
+
             <button
               onClick={signOut}
               className="px-5 py-2 border cursor-pointer border-gray-800 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white transition duration-300"
             >
               Sign Out
             </button>
+
             <Link href="/profile">
               <Image
                 src={session?.user.image || "/default-profile.png"}
@@ -56,7 +58,7 @@ const Nav = () => {
             <button
               key={provider.name}
               onClick={() => signIn(provider.id)}
-              className="px-5 py-2 text-white cursor-pointer bg-orange-600 rounded-lg hover:bg-orange-700 transition duration-300"
+              className="px-8 py-3 text-white cursor-pointer  bg-emerald-600  rounded-lg hover:bg-orange-700 transition duration-300"
             >
               Sign In
             </button>
@@ -85,6 +87,7 @@ const Nav = () => {
                   Profile
                 </Link>
                 <button
+                  href = "/create-prompt"
                   onClick={signOut}
                   className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
                 >
@@ -96,13 +99,13 @@ const Nav = () => {
         ) : (
           providers &&
           Object.values(providers).map((provider) => (
-            <button
-              key={provider.name}
-              onClick={() => signIn(provider.id)}
-              className="px-4 py-2 text-white bg-orange-600 rounded-lg hover:bg-orange-700 transition duration-300"
-            >
-              Sign In
-            </button>
+             <button
+               key={provider.name}
+               onClick={() => signIn(provider.id)}
+              className="px-4 py-2 text-white  bg-emerald-500 rounded-lg hover:bg-orange-700 transition duration-300"
+             >
+               Sign In
+             </button>
           ))
         )}
       </div>

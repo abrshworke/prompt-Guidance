@@ -57,7 +57,6 @@ const Feed = () => {
         />
       </form>
 
-      {/* Prompt List */}
       {filteredPosts.length > 0 ? (
         <PromptCardList data={filteredPosts} handleTagClick={() => {}} />
       ) : (
