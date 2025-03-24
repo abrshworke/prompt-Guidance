@@ -3,21 +3,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
+import { useState } from 'react';
+import { signOut, useSession } from 'next-auth/react';
 
 const Nav = () => {
   const { data: session } = useSession();
-  const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-
-  useEffect(() => {
-    const fetchProviders = async () => {
-      const res = await getProviders();
-      setProviders(res);
-    };
-    fetchProviders();
-  }, []);
 
   return (
     <nav className="flex items-center justify-between w-full px-6 py-4 bg-white shadow-md fixed top-0 left-0 right-0 z-50">
@@ -27,21 +18,19 @@ const Nav = () => {
         <p className="text-xl font-bold text-gray-800 hover:text-blue-600 transition duration-300">AI Prompt</p>
       </Link>
 
+      {/* Desktop Navigation */}
       <div className="hidden md:flex items-center gap-6">
         {session?.user ? (
-
           <>
             <Link href="/create-prompt" className="px-5 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300">
               Create Post
             </Link>
-
             <button
-              onClick={signOut}
-              className="px-5 py-2 border cursor-pointer border-gray-800 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white transition duration-300"
+              onClick={() => signOut({ callbackUrl: "/" })}
+              className="px-5 py-2 border border-gray-800 cursor-pointer text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white transition duration-300"
             >
               Sign Out
             </button>
-
             <Link href="/profile">
               <Image
                 src={session?.user.image || "/default-profile.png"}
@@ -53,16 +42,9 @@ const Nav = () => {
             </Link>
           </>
         ) : (
-          providers &&
-          Object.values(providers).map((provider) => (
-            <button
-              key={provider.name}
-              onClick={() => signIn(provider.id)}
-              className="px-8 py-3 text-white cursor-pointer  bg-emerald-600  rounded-lg hover:bg-orange-700 transition duration-300"
-            >
-              Sign In
-            </button>
-          ))
+          <Link href="/signin" className="px-5 py-2 text-white bg-emerald-600 rounded-lg hover:bg-orange-700 transition duration-300">
+            Sign In
+          </Link>
         )}
       </div>
 
@@ -87,8 +69,7 @@ const Nav = () => {
                   Profile
                 </Link>
                 <button
-                  href = "/create-prompt"
-                  onClick={signOut}
+                  onClick={() => signOut({ callbackUrl: "/" })}
                   className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
                 >
                   Sign Out
@@ -97,16 +78,9 @@ const Nav = () => {
             )}
           </div>
         ) : (
-          providers &&
-          Object.values(providers).map((provider) => (
-             <button
-               key={provider.name}
-               onClick={() => signIn(provider.id)}
-              className="px-4 py-2 text-white  bg-emerald-500 rounded-lg hover:bg-orange-700 transition duration-300"
-             >
-               Sign In
-             </button>
-          ))
+          <Link href="/signin" className="px-4 py-2 text-white bg-emerald-500 rounded-lg hover:bg-orange-700 transition duration-300">
+            Sign In
+          </Link>
         )}
       </div>
     </nav>
@@ -114,9 +88,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
-
-
-
-
-
